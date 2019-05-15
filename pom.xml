@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
   
 	<groupId>dev</groupId>
-	<artifactId>Workspace_Java_8</artifactId>
+	<artifactId>Formation-Diginamic-Java-8</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	
-	<name>Workspace Java 8</name>
+	<name>Formation-Diginamic-Java-8</name>
 	
 	<url>http://maven.apache.org</url>
 	
