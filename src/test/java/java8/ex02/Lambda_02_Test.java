@@ -1,5 +1,6 @@
 package java8.ex02;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -22,7 +23,10 @@ public class Lambda_02_Test {
     // tag::map[]
     private List<Account> map(List<Person> personList, PersonToAccountMapper mapper) {
         // TODO implémenter la méthode pour transformer une liste de personnes en liste de comptes
-        return null;
+    	List<Account> list = new ArrayList<Account>();
+    	for(Person p : personList)
+    		list.add(mapper.map(p));
+    	return list;
     }
     // end::map[]
 
@@ -35,7 +39,7 @@ public class Lambda_02_Test {
 
         // TODO transformer la liste de personnes en liste de comptes
         // TODO tous les objets comptes ont un solde à 100 par défaut
-        List<Account> result = map(personList, null);
+        List<Account> result = map(personList, p -> {Account a = new Account(); a.setOwner(p); a.setBalance(100); return a;});
 
         assert result.size() == personList.size();
         for (Account account : result) {
@@ -45,6 +49,18 @@ public class Lambda_02_Test {
     }
     // end::test_map_person_to_account[]
 
+    interface PersonToStringMapper{
+    	String map(Person p);
+    }
+    
+    private List<String> map2(List<Person> personList, PersonToStringMapper mapper) {
+        // TODO implémenter la méthode pour transformer une liste de personnes en liste de comptes
+    	List<String> list = new ArrayList<String>();
+    	for(Person p : personList)
+    		list.add(mapper.map(p));
+    	return list;
+    }
+    
     // tag::test_map_person_to_firstname[]
     @Test
     public void test_map_person_to_firstname() throws Exception {
@@ -52,7 +68,7 @@ public class Lambda_02_Test {
         List<Person> personList = Data.buildPersonList(100);
 
         // TODO transformer la liste de personnes en liste de prénoms
-        List<String> result = null;
+        List<String> result = map2(personList, p -> p.getFirstname());
 
         assert result.size() == personList.size();
         for (String firstname : result) {
